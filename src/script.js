@@ -8,6 +8,8 @@
 const form = document.getElementById('todo-form');
 const newTaskInput = document.getElementById('new-task');
 const todoList = document.getElementById('todo-list');
+const currentPoints = 0;
+const rewardPoints = 0; // eventually will pick based on the selected one
 
 // Function to add a new task
 function addTask(taskText) {
