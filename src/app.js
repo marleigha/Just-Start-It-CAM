@@ -1,10 +1,7 @@
 /** 
- * @fileOverview Corresponding to Project 1 Subtask 2b of the Fall 2023 CS317 
- * Mobile App Development Course at Wellesley College, this file provides 
- * functionality for a user to customize and interact with a square matrix of 
- * checkboxes.
+ * @fileOverview Wellesley Hackathon Project 
  * 
- * @author Marleigh Ausbrooks and Amy Fung
+ * @author Marleigh Ausbrooks, Carrie Huang, Ariel Athena Moncrief
  */
 
 // ==============================================================================
