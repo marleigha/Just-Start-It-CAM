@@ -1,8 +1,11 @@
 import pandas as pd
 import os
 
-data = pd.read_csv("Tasks.csv", sep = ",")
+#read csv file and create a list of lists, where the first index is the attributes
+def read(file_name):
 
-taskList = [data.columns.tolist()] +data.values.tolist()
+    data = pd.read_csv(file_name, sep = ",")
 
-print(taskList)
+    taskList = [data.columns.tolist()] + data.values.tolist()
+
+    print(taskList)
