@@ -8,11 +8,58 @@
 </head>
 <body>
     <div class="container">
-        <h1>My To-Do List</h1>
-        <form id="todo-form">
+        <h1>Just Start It!</h1>
+        <div class = "reward-section">
+            <p id="output">Current Reward Goal: <span id="selected-value">None</span></p>
+            <p id="output">Points Needed to Reach Goal: <span id="points">0</span></p>
+            <div>
+                <label for="file">Progress towards <span id="selected-value">None</span> :</label>
+                <progress id="file" value="32" max="100"> 32% </progress>
+            </div>
+            <select id="dropdown">
+                <option value="" disabled selected>How Will You Reward Yourself?</option>
+                <option value="option1">Bubble Tea</option>
+                <option value="option2">Watch a Movie</option>
+                <option value="option3">1 hour Video Game Session</option>
+            </select>
+
+            
+    
+            <!-- Input field and button to add new items -->
+            <input type="text" id="new-item" placeholder="Reward Description">
+            <input type="text" id="new-item" placeholder="Reward Point Value">
+            <button id="add-btn">Create New Reward</button>
+    
+            <!-- Error message for invalid input -->
+            <p id="error-msg" class="hidden">Please enter a valid item!</p>
+        </div>
+        <div id="input-area">
+            <div class="input-row">
+                <input type="text" placeholder="Name" class="name-input">
+                <input type="email" placeholder="Email" class="email-input">
+                <select class="role-select">
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="guest">Guest</option>
+                </select>
+                <input type="date" class="date-input">
+                <button class ="save-task">Save Task</button>
+                <button class="remove-btn">Remove</button>
+            </div>
+        </div>
+
+        <!-- Buttons to add more inputs and download CSV -->
+        <button id="add-row-btn">Add New Task</button>
+        <button id="download-btn">Download CSV</button>
+
+        <!-- Error message for invalid input -->
+        <p id="error-msg" class="hidden">Please enter valid data in all fields!</p>
+        </div>
+        <!-- <form id="todo-form">
             <input type="text" id="new-task" placeholder="Add a new task" required>
             <button type="submit">Add Task</button>
-        </form>
+        </form> -->
         <ul id="todo-list"></ul>
     </div>
 
