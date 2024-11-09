@@ -13,7 +13,7 @@ const addButton = document.getElementById('add-btn');
 const errorMsg = document.getElementById('error-msg');
 
 // Handle dropdown selection change
-dropdown.addEventListener('change', function() {
+dropdown.addEventListener('change', function () {
     const value = dropdown.value;
     selectedValue.textContent = value;
 });
@@ -21,7 +21,7 @@ dropdown.addEventListener('change', function() {
 // Function to add a new option to the dropdown
 function addNewReward() {
     const newItemText = newItemInput.value.trim();
-    
+
     if (newItemText === "") {
         // Show error if input is empty
         errorMsg.classList.remove('hidden');
@@ -49,32 +49,81 @@ addButton.addEventListener('click', addNewReward);
 //
 // Get DOM elements
 const inputArea = document.getElementById('input-area');
-const addRowBtn = document.getElementById('add-row-btn');
+editingBool = false;
+const createNewTaskBtn = document.getElementById('create-new-task-btn');
 const downloadBtn = document.getElementById('download-btn');
 //const errorMsg = document.getElementById('error-msg');
 
-// Function to add a new input row
-function addInputRow() {
-    const div = document.createElement('div');
-    div.classList.add('input-row');
-    div.innerHTML = `
-        <input type="text" placeholder="Name" class="name-input">
-        <input type="email" placeholder="Email" class="email-input">
-        <select class="role-select">
-            <option value="" disabled selected>Select Role</option>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-            <option value="guest">Guest</option>
-        </select>
-        <input type="date" class="date-input">
-        <button class="remove-btn">Remove</button>
-    `;
-    inputArea.appendChild(div);
+createNewTaskBtn.addEventListener('click', () => startWritingTask());
 
-    // Add event listener to the remove button
+
+function startWritingTask() {
+    editingBool = true;
+    inputArea.classList.remove('hidden');
+    // getting the values for each area
+    //const row = document.querySelectorAll('.input-row');
+    let validData = true;
+    specificTask = document.getElementById('input-row')
+
+    const taskInput = inputArea.querySelector('.task-input').value.trim();
+    const difficulty = inputArea.querySelector('.difficulty-select').value;
+    const urgency = inputArea.querySelector('urgency-select').value
+    const startDate = inputArea.querySelector('.start-date-input').value;
+    const endDate = inputArea.querySelector('.end-date-input').value;
+
+
+    if (taskInput === '' || difficulty === '' || urgency === '' || startDate === '' || endDate === '') {
+        validData = false;
+        return;
+    }
+
+
+    if (!validData) {
+        errorMsg.classList.remove('hidden');
+        return;
+    } else {
+        errorMsg.classList.add('hidden');
+    }
+
+    //
+    const saveTaskBtn = div.querySelector('.save-task-btn');
+    saveTaskBtn.addEventListener('click', () => saveTask(taskInput, difficulty, urgency, startDate, endDate));
+
+
+    //
     const removeBtn = div.querySelector('.remove-btn');
     removeBtn.addEventListener('click', () => div.remove());
+
 }
+
+function saveTask(taskInput, difficulty, urgency, startDate, endDate){
+    inputArea.classList.add('hidden');
+    const li = document.createElement('li');
+    li.innerHTML = `
+        <span>${taskInput}</span>
+        <button class="delete-btn">Delete</button>
+    `;
+    todoList.appendChild(li);
+    //save task
+    li.querySelector('.delete-btn').addEventListener('click', (e) => {
+        e.stopPropagation();  // Prevent completing task when deleting
+        li.remove();
+    });
+
+    // Mark task as complete on click
+    li.addEventListener('click', () => {
+        li.classList.toggle('completed');
+    });
+
+
+    // Delete task on button click
+    li.querySelector('.delete-btn').addEventListener('click', (e) => {
+        e.stopPropagation();  // Prevent completing task when deleting
+        li.remove();
+    });
+}
+
+
 
 // Function to gather input data and format as CSV
 function generateCSV() {
@@ -137,6 +186,7 @@ const rewardPoints = 0; // eventually will pick based on the selected one
 
 // Function to add a new task
 function addTask(taskText) {
+    inputArea.classList.add('hidden');
     const li = document.createElement('li');
     li.innerHTML = `
         <span>${taskText}</span>
