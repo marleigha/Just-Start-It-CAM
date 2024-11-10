@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <link rel="stylesheet" href="../static/style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>just start it!</h1>
 
         <!-- Input area for rewards -->
         <div id="reward-section">
-            <h3>current selected reward: <span id="selected-reward"></span></h3>
-            <h3>points: <span id="selected-points"></span></h3>
+            <h3>current selected reward: <span id="selected-reward"> ???</span></h3>
+            <h3>points: <span id="selected-points">100</span></h3>
+            <span>
+                <progress id="progress-bar" max="100" value="0">0%</progress>
+            </span>
+
 
             <select id="reward-dropdown">
                 <option value="" disabled selected>select a reward</option>
             </select>
 
             <h4>add reward options, and set point values</h4>
-            <input type="text" id="reward-name" placeholder="Reward Name" />
-            <input type="number" id="reward-points" placeholder="Points" min="1" />
-            <button id="add-reward-btn">Add Reward</button>
+            <input type="text" id="reward-name" placeholder="reward name" />
+            <input type="number" id="reward-points" placeholder="points" min="1" />
+            <button id="add-reward-btn">add reward</button>
 
             <!-- Dropdown for selecting rewards -->
         </div>
 
         <!-- Input area for tasks -->
         <button id="create-tasks-btn">create new tasks</button>
-        <button id="close-creation-btn" class = 'hidden'>close task creation</button>
-        <div id="task-section" class = 'hidden'>
+        <button id="close-creation-btn" class='hidden'>close task creation</button>
+        <div id="task-section" class='hidden'>
             <input type="text" id="task-name" placeholder="Task Name" />
             <select id="difficulty">
-                <option value="" disabled selected>Select Difficulty</option>
-                <option value="Easy">Easy</option>
-                <option value="Medium">Medium</option>
-                <option value="Hard">Hard</option>
+                <option value="" disabled selected>select difficulty</option>
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
             </select>
             <select id="urgency">
-                <option value="" disabled selected>Select Urgency</option>
-                <option value="Urgent">Urgent</option>
-                <option value="Non-Urgent">Non-Urgent</option>
+                <option value="" disabled selected>select urgency</option>
+                <option value="urgent">urgent</option>
+                <option value="non-Urgent">non-urgent</option>
             </select>
             <input type="date" id="start-date" value="">
             <input type="date" id="end-date" />
-            <button id="add-task-btn">Add Task</button>
+            <button id="add-task-btn">add task</button>
         </div>
-        
+
         <button id="financial-template-btn">financial to-do list template</button>
 
         <!-- Task list -->
         <h2>current to-do list</h2>
         <ul id="task-list"></ul>
     </div>
-    
+
 
     <script src="../static/script.js"></script>
 </body>
+
 </html>
