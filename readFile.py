@@ -47,3 +47,17 @@ def add_task(task_Name, difficulty_level, urgency_level, status, start_date, due
         writer_object.writerow(new_row)
     
     f_object.close()
+
+def add_reward(reward_name, points_needed, description):
+    # Define the path to the CSV file
+    file_path = os.path.join('db', 'Rewards.csv')
+    
+    # List that we want to add as a new row
+    new_row = [reward_name, points_needed, description]
+    
+    # Append the new row to the existing CSV file
+    with open(file_path, 'a', newline='') as f_object:
+        writer_object = writer(f_object)
+        writer_object.writerow(new_row)
+    
+    f_object.close()
