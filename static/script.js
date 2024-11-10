@@ -1,3 +1,5 @@
+
+
 // Get DOM elements
 const rewardNameInput = document.getElementById('reward-name');
 const rewardPointsInput = document.getElementById('reward-points');
@@ -19,6 +21,7 @@ const taskList = document.getElementById('task-list');
 const downloadTasksBtn = document.getElementById('download-tasks-btn');
 const uploadCsvInput = document.getElementById('csv-upload');
 const uploadTasksBtn = document.getElementById('upload-tasks-btn');
+const progressBar = document.getElementById('progress-bar')
 
 //upload csv templates and turn them into to-dos
 const financialTemplateBtn = document.getElementById('financial-template-btn');
@@ -69,6 +72,8 @@ rewardDropdown.addEventListener('change', () => {
 
     selectedRewardDisplay.textContent = selectedReward.name;
     selectedPointsDisplay.textContent = selectedReward.points;
+    progressBar.max = selectedReward.points;
+
 });
 
 //show the area where you make new tasks
@@ -120,19 +125,19 @@ addTaskBtn.addEventListener('click', () => {
     checkbox.addEventListener('change', toggleComplete);
 
     const span = document.createElement('span');
-    span.textContent = `Task: ${taskName}, Difficulty: ${difficulty}, Urgency: ${urgency}, Start: ${startDate}, End: ${endDate}`;
+    span.textContent = `task: ${taskName}, difficulty: ${difficulty}, urgency: ${urgency}, start: ${startDate}, end: ${endDate}`;
     const taskNameSpan = document.createElement('span');
     taskNameSpan.textContent = taskName;
     difficultySpan = document.createElement('span');
     difficultySpan.textContent = difficulty;
-    
+
     //calculate point value
     //take in whatever params it needs
     const pointValue = pointCalulator();
     const pointSpan = document.createElement('span');
     pointSpan.textContent = `worth: ${pointValue} points`;
 
-    
+
 
 
     checkboxLabel.appendChild(checkbox);
@@ -162,22 +167,30 @@ addTaskBtn.addEventListener('click', () => {
 });
 
 //scratch rn lol
-function pointCalulator(){
+function pointCalulator() {
     return 3;
 }
-
-
-
 
 // Function to toggle task completion
 function toggleComplete(event) {
     const checkbox = event.target;
     const label = checkbox.nextElementSibling; // The task text span
-
+    const difficulty = label.nextElementSibling;
+    const rawPointSpan = difficulty.nextElementSibling.innerHTML;
+    const pointValue = rawPointSpan.split(' ')[1];
+    currentValue = progressBar.getAttribute("value");
+    console.log('current value', currentValue);
+    console.log('points to add or remove', pointValue)
+    
     if (checkbox.checked) {
         label.classList.add('completed');
+        progressBar.setAttribute("value", (parseInt(currentValue)+ parseInt(pointValue)).toString());
+        console.log('points to add', pointValue)
+
     } else {
         label.classList.remove('completed');
+        progressBar.setAttribute("value", (parseInt(currentValue)- parseInt(pointValue)).toString());
+        console.log('points to remove', pointValue)
     }
 };
 
@@ -186,3 +199,5 @@ function deleteTask(event) {
     const task = event.target.closest('li');
     task.remove();
 };
+
+
