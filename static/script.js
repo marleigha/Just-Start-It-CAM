@@ -213,15 +213,38 @@ function toggleComplete(event) {
 function deleteTask(event) {
     currentValue = parseInt(progressBar.getAttribute("value"));
     const task = event.target.closest('li');
-    rawHTML =task.innerHTML.split('worth: ');
+    rawHTML = task.innerHTML.split('worth: ');
     pointsToRemove = parseInt(rawHTML[1].split('points')[0]);
     console.log(pointsToRemove);
-    
+    let checkedBool;
+    for (const child of task.children) {
+        //console.log(child);
+        console.log(child.className);
+        if (child.className === 'checkbox-label') {
+            checkboxLabel = child;
+            for (const el of checkboxLabel.children) {
+                console.log(el);
+                if (el.type === 'checkbox') {
+                    checkbox = el;
+                    console.log(checkbox);
+                    if (checkbox.checked) {
+                        checkedBool = true;
+                        console.log('its checked?');
+                    }
+
+                }
+            }
+
+        }
+        //('checkbox-label'));
+    }
+
     // need to figure out hoe to
 
     console.log(task);
-
-    progressBar.setAttribute("value",currentValue - pointsToRemove );
+    if (checkedBool) {
+        progressBar.setAttribute("value", currentValue - pointsToRemove);
+    }
     task.remove();
 };
 
