@@ -8,19 +8,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Just Start It!</h1>
+        <h1>just start it!</h1>
         <div class = "reward-section">
-            <p id="output">Current Reward Goal: <span id="selected-value">None</span></p>
-            <p id="output">Points Needed to Reach Goal: <span id="points">0</span></p>
+            <p id="output">current reward goal: <span id="selected-reward">None</span></p>
+            <p id="output">points needed to reach goal: <span id="points">0</span></p>
             <div>
-                <label for="file">Progress towards <span id="selected-value">None</span> :</label>
+                <label for="file" id="output" >current progress</label>
                 <progress id="file" value="32" max="100"> 32% </progress>
             </div>
-            <select id="dropdown">
-                <option value="" disabled selected>How Will You Reward Yourself?</option>
-                <option value="option1">Bubble Tea</option>
-                <option value="option2">Watch a Movie</option>
-                <option value="option3">1 hour Video Game Session</option>
+            <select id="reward-dropdown">
+                <option value="" disabled selected>how will you reward yourself?</option>
+                <option value="bubble tea">Bubble Tea</option>
+                <option value="watch a movie">Watch a Movie</option>
+                <option value="1 hour video game session">1 hour Video Game Session</option>
             </select>
 
             
@@ -28,14 +28,13 @@
             <!-- Input field and button to add new items -->
             <input type="text" id="new-item" placeholder="Reward Description">
             <input type="text" id="new-item" placeholder="Reward Point Value">
-            <button id="add-btn">Create New Reward</button>
+            <button id="add-btn">save new reward</button>
     
             <!-- Error message for invalid input -->
             <p id="error-msg" class="hidden">Please enter a valid item!</p>
         </div>
-        <button id="create-new-task-btn">Create New Task</button>
+        <!-- <button id="create-new-task-btn">Create New Task</button>
         <div id="input-area" class = "hidden">
-            <label>
                 <div> 
                     <ul class= "task-creation" id="task-creation">
                         <li>Task Description</li>
@@ -46,8 +45,7 @@
                         <li>End Date</li>
                     </ul>
                 </div>
-            </label>
-            <div class="input-row">
+            <div id = 'input-row' class="input-row">
                 <input type="text" placeholder="Task Description" class="task-input">
                 <select class="difficulty-select">
                     <option value="" disabled selected>Select Difficulty</option>
@@ -74,18 +72,51 @@
         </div>
 
         <!-- Buttons to add more inputs and download CSV -->
-        <button id="add-row-btn">Add New Task</button>
+        <!-- <button id="add-row-btn">Add New Task</button>
         <button id="download-btn">Download CSV</button>
 
-        <!-- Error message for invalid input -->
+        Error message for invalid input
         <p id="error-msg" class="hidden">Please enter valid data in all fields!</p>
-        </div>
-        <!-- <form id="todo-form">
+        <button id = 'finances template'>Make Finances</button>
+        <ul id="todo-list"></ul>
+
+        <form id="todo-form">
             <input type="text" id="new-task" placeholder="Add a new task" required>
             <button type="submit">Add Task</button>
         </form> -->
-        <ul id="todo-list"></ul>
+    <!-- </div> -->
+        <h1>Task List</h1>
+
+        <!-- Input area for task details -->
+        <div id="input-area">
+            <input type="text" placeholder="Task Name" class="task-name-input">
+            <select class="difficulty-select">
+                <option value="" disabled selected>Difficulty</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <select class="urgency-select">
+                <option value="" disabled selected>Urgency</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Non-Urgent">Non-Urgent</option>
+
+            </select>
+            <input type="date" class="start-date-input" value="">
+            <input type="date" class="end-date-input" value="">
+            <button id="add-task-btn">Add Task</button>
+        </div>
+
+        <!-- Task List -->
+        <ul id="task-list"></ul>
+
+        <!-- Buttons to download CSV -->
+        <button id="download-btn">Download CSV</button>
+
+        <!-- Error message for invalid input -->
+        <p id="error-msg" class="hidden">Please fill out all fields correctly!</p>
     </div>
+    
 
     <script src="../static/script.js"></script>
 </body>
