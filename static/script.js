@@ -5,7 +5,7 @@ const rewardNameInput = document.getElementById('reward-name');
 const rewardPointsInput = document.getElementById('reward-points');
 const addRewardBtn = document.getElementById('add-reward-btn');
 const rewardDropdown = document.getElementById('reward-dropdown');
-const selectedRewardDisplay = document.getElementById('selected-reward');
+const selectedRewardDisplay = document.getElementsByClassName('selected-reward');
 const selectedPointsDisplay = document.getElementById('selected-points');
 
 const taskArea = document.getElementById('task-section');
@@ -145,8 +145,10 @@ addRewardBtn.addEventListener('click', () => {
 rewardDropdown.addEventListener('change', () => {
     const selectedIndex = rewardDropdown.value;
     const selectedReward = rewards[selectedIndex];
-
-    selectedRewardDisplay.textContent = selectedReward.name;
+    for (var i = 0; i < selectedRewardDisplay.length; i++) {
+        selectedRewardDisplay[i].textContent = selectedReward.name;
+    }
+    //selectedRewardDisplay.textContent = selectedReward.name;
     selectedPointsDisplay.textContent = selectedReward.points;
     progressBar.max = selectedReward.points;
 });
@@ -271,23 +273,150 @@ function toggleComplete(event) {
     currentValue = progressBar.getAttribute("value");
     console.log('current value', currentValue);
     console.log('points to add or remove', pointValue)
-    
+
     if (checkbox.checked) {
         label.classList.add('completed');
-        Bar.setAttribute("value", (parseInt(currentValue)+ parseInt(pointValue)).toString());
+        progressBar.setAttribute("value", (parseInt(currentValue) + parseInt(pointValue)).toString());
         console.log('points to add', pointValue)
+        newVal = progressBar.getAttribute("value");
+        console.log('current value now', newVal);
+        const selectedIndex = rewardDropdown.value;
+        const selectedReward = rewards[selectedIndex];
+        console.log(selectedReward.points)
+        console.log('current value now', newVal);
+
+        if (parseInt(newVal) >= parseInt(selectedReward.points)) {
+            console.log('do we get here?')
+            popup.classList.add('show');
+            popup.classList.remove('hidden');
+            startConfetti();
+        }
 
     } else {
         label.classList.remove('completed');
-        progressBar.setAttribute("value", (parseInt(currentValue)- parseInt(pointValue)).toString());
+        progressBar.setAttribute("value", (parseInt(currentValue) - parseInt(pointValue)).toString());
         console.log('points to remove', pointValue)
     }
 };
 
 // Function to delete a task
 function deleteTask(event) {
+    currentValue = parseInt(progressBar.getAttribute("value"));
     const task = event.target.closest('li');
+    rawHTML = task.innerHTML.split('worth: ');
+    pointsToRemove = parseInt(rawHTML[1].split('points')[0]);
+    console.log(pointsToRemove);
+    let checkedBool;
+    for (const child of task.children) {
+        //console.log(child);
+        console.log(child.className);
+        if (child.className === 'checkbox-label') {
+            checkboxLabel = child;
+            for (const el of checkboxLabel.children) {
+                console.log(el);
+                if (el.type === 'checkbox') {
+                    checkbox = el;
+                    console.log(checkbox);
+                    if (checkbox.checked) {
+                        checkedBool = true;
+                        console.log('its checked?');
+                    }
+
+                }
+            }
+
+        }
+        //('checkbox-label'));
+    }
+
+    // need to figure out hoe to
+
+    console.log(task);
+    if (checkedBool) {
+        progressBar.setAttribute("value", currentValue - pointsToRemove);
+    }
     task.remove();
 };
+
+//confetti!
+// Get DOM elements
+const popup = document.getElementById('popup');
+//const showPopupBtn = document.getElementById('show-popup-btn');
+const closeBtn = document.getElementById('close-btn');
+const confettiCanvas = document.getElementById('confetti-canvas');
+
+// Function to show the popup and start confetti
+// showPopupBtn.addEventListener('click', () => {
+//     popup.classList.add('show');
+//     popup.classList.remove('hidden');
+//     startConfetti();
+// });
+
+// Function to hide the popup and stop confetti
+closeBtn.addEventListener('click', () => {
+    popup.classList.remove('show');
+    popup.classList.add('hidden');
+    stopConfetti();
+});
+
+// Confetti effect
+const confettiContext = confettiCanvas.getContext('2d');
+const confettiParticles = [];
+const confettiColors = ['#FEA971', '#FBB4C4', '#BEBCDC', '#F4D03F', '#BC96BF', '#9CAF88', '#EDE8D0'];
+let confettiActive = false;
+
+function startConfetti() {
+    confettiActive = true;
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+    generateConfettiParticles();
+    requestAnimationFrame(updateConfetti);
+}
+
+function stopConfetti() {
+    confettiActive = false;
+    // Clear the confetti particles array
+    confettiParticles.length = 0;
+
+    // Clear the confetti canvas
+    confettiContext.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+}
+
+function generateConfettiParticles() {
+    confettiParticles.length = 0;  // Clear previous particles
+    const particleCount = 150;
+    for (let i = 0; i < particleCount; i++) {
+        confettiParticles.push({
+            x: Math.random() * confettiCanvas.width,
+            y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+            size: Math.random() * 5 + 2,
+            speed: Math.random() * 3 + 2,
+            angle: Math.random() * Math.PI * 2,
+            color: confettiColors[Math.floor(Math.random() * confettiColors.length)] // Random custom color
+        });
+    }
+}
+
+function updateConfetti() {
+    if (!confettiActive) return;
+
+    confettiContext.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+    confettiParticles.forEach(particle => {
+        particle.y += particle.speed;
+        if (particle.y > confettiCanvas.height) {
+            particle.y = -particle.size;
+        }
+
+        confettiContext.beginPath();
+        confettiContext.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        confettiContext.fillStyle = particle.color;
+        confettiContext.fill();
+    });
+
+    requestAnimationFrame(updateConfetti);
+}
+
+
 
 

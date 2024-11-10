@@ -14,7 +14,7 @@
 
         <!-- Input area for rewards -->
         <div id="reward-section">
-            <h3>current selected reward: <span id="selected-reward"> ???</span></h3>
+            <h3>current selected reward: <span class="selected-reward"> ???</span></h3>
             <h3>points: <span id="selected-points">100</span></h3>
             <span>
                 <progress id="progress-bar" max="100" value="0">0%</progress>
@@ -60,6 +60,17 @@
         <h2>current to-do list</h2>
         <ul id="task-list"></ul>
     </div>
+
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <span id="close-btn">&times;</span>
+            <h1>congratulations!</h2>
+            <h3>you’ve earned enough points to get: <span class="selected-reward"> </span></h3>
+            <h3> go enjoy or set a new goal !</h3>
+        </div>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
 
 
     <script src="../static/script.js"></script>
