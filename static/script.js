@@ -75,7 +75,7 @@ financialTemplateBtn.addEventListener('click', () => {
                 // Calculate point value
                 const pointValue = pointCalulator(task.difficulty);
                 const pointSpan = document.createElement('span');
-                pointSpan.textContent = `Worth: ${pointValue} points`;
+                pointSpan.textContent = `worth: ${pointValue} points`;
 
                 
                 checkboxLabel.appendChild(checkbox);
@@ -327,7 +327,9 @@ function toggleComplete(event) {
 function deleteTask(event) {
     currentValue = parseInt(progressBar.getAttribute("value"));
     const task = event.target.closest('li');
+    console.log(task.innerHTML);
     rawHTML = task.innerHTML.split('worth: ');
+    console.log(rawHTML)
     pointsToRemove = parseInt(rawHTML[1].split('points')[0]);
     console.log(pointsToRemove);
     let checkedBool;
