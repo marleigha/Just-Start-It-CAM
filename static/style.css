@@ -344,4 +344,18 @@ input[type="number"] {
 
       }
 
-    
+      footer {
+        background-color: rgb(208, 183, 255);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 75px;
+        width: 100%;
+        overflow: hidden;
+        h4{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+    }
