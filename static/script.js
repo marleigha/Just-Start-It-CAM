@@ -23,17 +23,89 @@ const uploadCsvInput = document.getElementById('csv-upload');
 const uploadTasksBtn = document.getElementById('upload-tasks-btn');
 const progressBar = document.getElementById('progress-bar')
 
-//upload csv templates and turn them into to-dos
-const financialTemplateBtn = document.getElementById('financial-template-btn');
-financialTemplateBtn.addEventListener('click', () => {
-    //this is where we'd want to have the read in csv and stuff
-});
-
 // Reward storage
 const rewards = [];
 
 // Task storage
 const tasks = [];
+
+// JavaScript code goes here
+const financialTemplateBtn = document.getElementById('financial-template-btn');
+financialTemplateBtn.addEventListener('click', () => {
+    fetch('/get_tasks')  // Fetch the tasks data from the server
+        .then(response => response.json())
+        .then(data => {
+            const taskList = document.getElementById('task-list');
+            taskList.innerHTML = '';  // Clear existing tasks
+
+            data.forEach(task => {
+                // Create checkbox and label
+                const checkboxLabel = document.createElement('label');
+                checkboxLabel.classList.add('checkbox-label');
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.addEventListener('change', toggleComplete);
+
+                const li = document.createElement('li');
+                li.classList.add('task-item');  // Add class for styling
+
+                // Create task details (only values, no labels)
+                const span = document.createElement('span');
+                span.textContent = `${task.task_Name}, ${task.difficulty_level}, ${task.urgency_level}, ${task.startDate}, ${task.endDate}`;
+
+                // Create task details (correctly access task properties)
+                const taskNameSpan = document.createElement('span');
+                taskNameSpan.textContent = task.task_Name;  // Use task.taskName
+                const difficultySpan = document.createElement('span');
+                difficultySpan.textContent = task.difficulty_level;  // Use task.difficulty
+                const urgencySpan = document.createElement('span');
+                urgencySpan.textContent = task.urgency_level;  // Use task.urgency
+                
+                console.log(taskNameSpan)
+                console.log(difficultySpan)
+
+                // Calculate point value
+                const pointValue = pointCalulator(task.difficulty);
+                const pointSpan = document.createElement('span');
+                pointSpan.textContent = `Worth: ${pointValue} points`;
+
+                
+                checkboxLabel.appendChild(checkbox);
+                checkboxLabel.appendChild(taskNameSpan);
+                checkboxLabel.appendChild(difficultySpan);
+                checkboxLabel.appendChild(pointSpan)
+
+                // Delete button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('delete-btn');
+                deleteBtn.innerHTML = '&times;';
+                deleteBtn.addEventListener('click', deleteTask);
+
+
+                // Append the label and button to the list item
+                //li.textContent = `Task: ${taskName}, Difficulty: ${difficulty}, Urgency: ${urgency}, Start: ${startDate}, End: ${endDate}`;
+                li.appendChild(checkboxLabel);
+                li.appendChild(deleteBtn);
+                taskList.appendChild(li);
+             });
+        })
+        .catch(error => {
+            console.error('Error fetching tasks:', error);
+        });
+});
+
+// Placeholder point calculator function (adjust as needed)
+function pointCalulator(difficulty) {
+    if (difficulty === 'Medium') {
+        return 3;  // Example: "Medium" difficulty gives 3 points
+    } else if (difficulty === 'High') {
+        return 5;  // Example: "High" difficulty gives 5 points
+    } else {
+        return 1;  // Default point for low difficulty
+    }
+}
+
 
 // Set today's date as default for start date
 const today = new Date().toISOString().split('T')[0];
@@ -73,7 +145,6 @@ rewardDropdown.addEventListener('change', () => {
     selectedRewardDisplay.textContent = selectedReward.name;
     selectedPointsDisplay.textContent = selectedReward.points;
     progressBar.max = selectedReward.points;
-
 });
 
 //show the area where you make new tasks
@@ -136,8 +207,6 @@ addTaskBtn.addEventListener('click', () => {
     const pointValue = pointCalulator();
     const pointSpan = document.createElement('span');
     pointSpan.textContent = `worth: ${pointValue} points`;
-
-
 
 
     checkboxLabel.appendChild(checkbox);
