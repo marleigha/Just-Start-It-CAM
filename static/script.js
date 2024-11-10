@@ -126,9 +126,27 @@ addTaskBtn.addEventListener('click', () => {
     difficultySpan = document.createElement('span');
     difficultySpan.textContent = difficulty;
     
+
+    // Function to calculate points based on task difficulty and urgency
+    function pointsCalculator(difficulty, urgency) {
+        // Points mapping for difficulty and urgency
+        const pointsDict = {
+                            easy: 2,
+                            medium: 5,
+                            hard: 10,
+                            urgent: 2,
+                            non_urgent: 1
+                            };
+  
+        // Calculate the total points
+        const points = pointsDict[difficulty] * pointsDict[urgency];
+    
+        return points;
+        }
+
     //calculate point value
     //take in whatever params it needs
-    const pointValue = pointCalulator();
+    const pointValue = pointsCalculator(difficulty, urgency);
     const pointSpan = document.createElement('span');
     pointSpan.textContent = `worth: ${pointValue} points`;
 
