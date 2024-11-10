@@ -313,4 +313,35 @@ input[type="number"] {
 
       }
 
+      img.purple-star-3{
+  
+        width: 75px;
+        height: 75px;
+        position: absolute;
+        left: 876px;
+        top: 67px;
+
+      }
+
+      img.purple-star-4{
+  
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        left: 956px;
+        top: 67px;
+
+      }
+
+
+      img.purple-star-5{
+  
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: 958px;
+        top: 105px;
+
+      }
+
     
