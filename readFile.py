@@ -7,7 +7,7 @@ def read(file_name):
     file_path = os.path.join('db', file_name)
     data = pd.read_csv(file_path, sep = ",")
 
-    taskList = [data.columns.tolist()] + data.values.tolist()
+    taskList = data.to_dict(orient='records')
 
     return taskList
 
@@ -35,21 +35,15 @@ def points_calculator(difficulty, urgency):
 
 # adds a task as the new row to the csv file
 def add_task(task_Name, difficulty_level, urgency_level, status, start_date, due_date, file_name):
+    # Define the path to the CSV file
+    file_path = os.path.join('db', file_name)
     
     # List that we want to add as a new row
-    List = [task_Name, difficulty_level, urgency_level, status, start_date, due_date, points_calculator(difficulty_level, urgency_level), file_name]
+    new_row = [task_Name, difficulty_level, urgency_level, status, start_date, due_date, points_calculator(difficulty_level, urgency_level)]
     
-    # Open our existing CSV file in append mode
-    # Create a file object for this file
-    with open(file_name, 'a') as f_object:
-        
-        # Pass this file object to csv.writer()
-        # and get a writer object
+    # Append the new row to the existing CSV file
+    with open(file_path, 'a', newline='') as f_object:
         writer_object = writer(f_object)
+        writer_object.writerow(new_row)
     
-        # Pass the list as an argument into
-        # the writerow()
-        writer_object.writerow(List)
-    
-        # Close the file object
-        f_object.close()
+    f_object.close()
