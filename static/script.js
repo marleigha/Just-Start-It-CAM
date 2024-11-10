@@ -120,11 +120,25 @@ addTaskBtn.addEventListener('click', () => {
     checkbox.addEventListener('change', toggleComplete);
 
     const span = document.createElement('span');
-    span.textContent = `Task: ${taskName}, Difficulty: ${difficulty}, Urgency: ${urgency}, Start: ${startDate}, End: ${endDate}`;;
+    span.textContent = `Task: ${taskName}, Difficulty: ${difficulty}, Urgency: ${urgency}, Start: ${startDate}, End: ${endDate}`;
+    const taskNameSpan = document.createElement('span');
+    taskNameSpan.textContent = taskName;
+    difficultySpan = document.createElement('span');
+    difficultySpan.textContent = difficulty;
+    
+    //calculate point value
+    //take in whatever params it needs
+    const pointValue = pointCalulator();
+    const pointSpan = document.createElement('span');
+    pointSpan.textContent = `worth: ${pointValue} points`;
+
+    
 
 
     checkboxLabel.appendChild(checkbox);
-    checkboxLabel.appendChild(span);
+    checkboxLabel.appendChild(taskNameSpan);
+    checkboxLabel.appendChild(difficultySpan);
+    checkboxLabel.appendChild(pointSpan)
 
     // Delete button
     const deleteBtn = document.createElement('button');
@@ -147,6 +161,10 @@ addTaskBtn.addEventListener('click', () => {
     endDateInput.value = '';
 });
 
+//scratch rn lol
+function pointCalulator(){
+    return 3;
+}
 
 
 
