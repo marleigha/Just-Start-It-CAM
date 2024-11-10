@@ -6,6 +6,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+
 }
 
 .container {
@@ -14,8 +15,16 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 80%;
-  height: 80%;
+
   text-align: center;
+
+  position: absolute; /* Fix the container to the screen */
+  top: 10vh; /* 10% from the top of the screen */
+  left: 10%; /* Optional: Center the container horizontally */
+  right: 10%; /* Optional: Center the container horizontally */
+
+  text-align: center;
+  box-sizing: border-box;
 }
 
 h1 {
