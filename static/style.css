@@ -25,6 +25,7 @@ body {
 
   text-align: center;
   box-sizing: border-box;
+
 }
 
 h1 {
@@ -44,6 +45,11 @@ input[type="text"], input[type="number"] select, input[type="date"] {
   width: 35%;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+/* Targeting the date input fields specifically */
+input[type="date"] {
+  width: 150px; /* Adjust this value as needed */
 }
 
 button {
