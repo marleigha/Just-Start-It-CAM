@@ -13,31 +13,38 @@
         <h1>just start it!</h1>
 
         <!-- Input area for rewards -->
+        <h3>current selected reward: <span class="selected-reward"> ???</span></h3>
+        <h3>progress: <span id="current-points">0</span>/<span id="selected-points">100</span></h3>
+        <span>
+            <progress id="progress-bar" max="100" value="0">0%</progress>
+        </span>
         <div id="reward-section">
-            <h3>current selected reward: <span class="selected-reward"> ???</span></h3>
-            <h3>points: <span id="selected-points">100</span></h3>
-            <span>
-                <progress id="progress-bar" max="100" value="0">0%</progress>
-            </span>
+                <span>
+                    <select id="reward-dropdown" class='reward-dropdown'>
+                        <option value="" disabled selected>select a reward</option>
+                    </select>
+                </span>
 
+            <div>
+                <button id="create-new-reward-btn">create new rewards</button>
+            </div>
+            <button id="close-new-reward-btn" class='hidden'>close reward creation</button>
+            <div id='reward-maker' class='hidden'>
 
-            <select id="reward-dropdown">
-                <option value="" disabled selected>select a reward</option>
-            </select>
-
-            <h4>add reward options, and set point values</h4>
-            <input type="text" id="reward-name" placeholder="reward name" />
-            <input type="number" id="reward-points" placeholder="points" min="1" />
-            <button id="add-reward-btn">add reward</button>
+                <p>add the description of your reward, and then set how many points it's worth ! </p>
+                <div class='new-reward'>
+                    <input type="text" id="reward-name" placeholder="reward name" />
+                    <input type="number" id="reward-points" placeholder="points" min="1" />
+                    <button id="add-reward-btn" class="add-reward-btn">add new reward</button>
+                </div>
+            </div>
 
             <!-- Dropdown for selecting rewards -->
         </div>
 
         <!-- Input area for tasks -->
-        <button id="create-tasks-btn">create new tasks</button>
-        <button id="close-creation-btn" class='hidden'>close task creation</button>
-        <div id="task-section" class='hidden'>
-            <input type="text" id="task-name" placeholder="Task Name" />
+        <div id="task-section" class='hidden task-section'>
+            <input type="text" id="task-name" placeholder="task name" />
             <select id="difficulty">
                 <option value="" disabled selected>select difficulty</option>
                 <option value="easy">easy</option>
@@ -49,24 +56,30 @@
                 <option value="urgent">urgent</option>
                 <option value="non_urgent">non_urgent</option>
             </select>
+            <p class='taskp'>start date:</p>
             <input type="date" id="start-date" value="">
+            <p class='taskp'>end date:</p>
             <input type="date" id="end-date" />
             <button id="add-task-btn">add task</button>
         </div>
-
+        <button id="create-tasks-btn">create new tasks</button>
+        <button id="close-creation-btn" class='hidden'>close task creation</button>
         <button id="financial-template-btn">financial to-do list template</button>
 
         <!-- Task list -->
         <h2>current to-do list</h2>
-        <ul id="task-list"></ul>
+        <div class='flex-container'>
+            <ul id="task-list"></ul>
+
+        </div>
     </div>
 
     <div id="popup" class="popup hidden">
         <div class="popup-content">
             <span id="close-btn">&times;</span>
             <h1>congratulations!</h2>
-            <h3>you’ve earned enough points to get: <span class="selected-reward"> </span></h3>
-            <h3> go enjoy or set a new goal !</h3>
+                <h3>you’ve earned enough points to get: <span class="selected-reward"> </span></h3>
+                <h3> go enjoy or set a new goal !</h3>
         </div>
     </div>
 

@@ -6,7 +6,28 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+}
 
+.task-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 8%;
+  padding-left: 8%;
+
+  p{
+    padding-right: 1%;
+    padding-left: 1%;
+  }
+  button{
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  select{
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    width: 23%;
+  }
 }
 
 .container {
@@ -26,40 +47,40 @@ body {
   text-align: center;
   box-sizing: border-box;
 
+  .flex-container {
+    margin-top: -2%;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 h1 {
-  margin-bottom: 20px;
+  margin: 2%;
 }
 
 #input-area {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-input[type="text"], input[type="number"] select, input[type="date"] {
-  padding: 8px;
-  width: 35%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
 /* Targeting the date input fields specifically */
 input[type="date"] {
-  width: 150px; /* Adjust this value as needed */
+  width: 100px; /* Adjust this value as needed */
 }
 
 button {
   padding: 10px 20px;
-  background-color: #9CAF88;
+  background-color: #9caf88;
   color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 button:hover {
@@ -78,6 +99,7 @@ li {
   padding: 10px;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.3s ease;
+
 }
 
 li:hover {
@@ -96,19 +118,19 @@ input[type="checkbox"] {
   width: 20px;
   height: 20px;
   border-radius: 5px;
-  border: 2px solid #9CAF88;
+  border: 2px solid #9caf88;
   cursor: pointer;
   position: relative;
   transition: all 0.3s ease;
 }
 
 input[type="checkbox"]:checked {
-  background-color: #9CAF88;
-  border-color: #9CAF88;
+  background-color: #9caf88;
+  border-color: #9caf88;
 }
 
 input[type="checkbox"]:checked::before {
-  content: '✔';
+  content: "✔";
   color: white;
   position: absolute;
   top: 2px;
@@ -139,18 +161,21 @@ input[type="checkbox"]:checked::before {
 }
 
 progress {
-  width: 500px;
+  width: 70%;
   background-color: #f0f0f0;
   height: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 2%;
   border-radius: 15px;
 }
 
-.progress {
-  width: 0px;
-  height: 100%;
-  background-color: #4caf50;
-  transition: width 0.3s ease;
+progress::-moz-progress-bar {
+  background: #9caf88;
+}
+progress::-webkit-progress-value {
+  background: #9caf88;
+}
+progress {
+  color: #9caf88;
 }
 
 .popup {
@@ -211,5 +236,44 @@ canvas {
   pointer-events: none;
   z-index: 9999;
 }
+div.new-reward{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 8%;
+  padding-left: 8%;
 
+  button{
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+}
 
+select {
+  width: 20%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="text"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 45%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="number"] {
+  padding: 8px;
+  width: 10%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
