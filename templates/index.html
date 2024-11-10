@@ -19,16 +19,20 @@
             <progress id="progress-bar" max="100" value="0">0%</progress>
         </span>
         <div id="reward-section">
-                <span>
-                    <select id="reward-dropdown" class='reward-dropdown'>
-                        <option value="" disabled selected>select a reward</option>
-                    </select>
-                </span>
+            <span>
+                <select id="reward-dropdown" class='reward-dropdown'>
+                    <option value="" disabled selected>select a reward</option>
+                </select>
+            </span>
 
-            <div>
+            <!-- section for controlling creation and hiding -->
+            <div class = 'control-center'>
                 <button id="create-new-reward-btn">create new rewards</button>
+                <button id="close-new-reward-btn" class='hidden'>close reward creation</button>
+                <button id="create-tasks-btn">create new tasks</button>
+                <button id="close-creation-btn" class='hidden'>close task creation</button>
+                <button id="financial-template-btn">financial to-do list template</button>
             </div>
-            <button id="close-new-reward-btn" class='hidden'>close reward creation</button>
             <div id='reward-maker' class='hidden'>
 
                 <p>add the description of your reward, and then set how many points it's worth ! </p>
@@ -38,6 +42,9 @@
                     <button id="add-reward-btn" class="add-reward-btn">add new reward</button>
                 </div>
             </div>
+
+
+
 
             <!-- Dropdown for selecting rewards -->
         </div>
@@ -62,12 +69,11 @@
             <input type="date" id="end-date" />
             <button id="add-task-btn">add task</button>
         </div>
-        <button id="create-tasks-btn">create new tasks</button>
-        <button id="close-creation-btn" class='hidden'>close task creation</button>
-        <button id="financial-template-btn">financial to-do list template</button>
+
 
         <!-- Task list -->
         <h2>current to-do list</h2>
+        <hr>
         <div class='flex-container'>
             <ul id="task-list"></ul>
 

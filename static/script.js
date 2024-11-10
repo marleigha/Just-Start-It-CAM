@@ -358,6 +358,8 @@ function deleteTask(event) {
     console.log(task);
     if (checkedBool) {
         progressBar.setAttribute("value", currentValue - pointsToRemove);
+        subbedVal = progressBar.getAttribute("value");
+        currentPointsDisplay.textContent = subbedVal;
     }
     task.remove();
 };
