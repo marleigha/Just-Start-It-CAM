@@ -20,6 +20,12 @@ const downloadTasksBtn = document.getElementById('download-tasks-btn');
 const uploadCsvInput = document.getElementById('csv-upload');
 const uploadTasksBtn = document.getElementById('upload-tasks-btn');
 
+//upload csv templates and turn them into to-dos
+const financialTemplateBtn = document.getElementById('financial-template-btn');
+financialTemplateBtnn.addEventListener('click', () => {
+    //this is where we'd want to have the read in csv and stuff
+});
+
 // Reward storage
 const rewards = [];
 
