@@ -20,6 +20,12 @@ const downloadTasksBtn = document.getElementById('download-tasks-btn');
 const uploadCsvInput = document.getElementById('csv-upload');
 const uploadTasksBtn = document.getElementById('upload-tasks-btn');
 
+//upload csv templates and turn them into to-dos
+const financialTemplateBtn = document.getElementById('financial-template-btn');
+financialTemplateBtnn.addEventListener('click', () => {
+    //this is where we'd want to have the read in csv and stuff
+});
+
 // Reward storage
 const rewards = [];
 
@@ -103,9 +109,34 @@ addTaskBtn.addEventListener('click', () => {
     };
     tasks.push(task);
 
-    // Add task to the UI as an <li>
     const li = document.createElement('li');
-    li.textContent = `Task: ${taskName}, Difficulty: ${difficulty}, Urgency: ${urgency}, Start: ${startDate}, End: ${endDate}`;
+
+    // Checkbox and task label
+    const checkboxLabel = document.createElement('label');
+    checkboxLabel.classList.add('checkbox-label');
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.addEventListener('change', toggleComplete);
+
+    const span = document.createElement('span');
+    span.textContent = `Task: ${taskName}, Difficulty: ${difficulty}, Urgency: ${urgency}, Start: ${startDate}, End: ${endDate}`;;
+
+
+    checkboxLabel.appendChild(checkbox);
+    checkboxLabel.appendChild(span);
+
+    // Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.innerHTML = '&times;';
+    deleteBtn.addEventListener('click', deleteTask);
+
+
+    // Append the label and button to the list item
+    //li.textContent = `Task: ${taskName}, Difficulty: ${difficulty}, Urgency: ${urgency}, Start: ${startDate}, End: ${endDate}`;
+    li.appendChild(checkboxLabel);
+    li.appendChild(deleteBtn);
     taskList.appendChild(li);
 
     // Clear input fields
@@ -115,3 +146,25 @@ addTaskBtn.addEventListener('click', () => {
     startDateInput.value = today;
     endDateInput.value = '';
 });
+
+
+
+
+
+// Function to toggle task completion
+function toggleComplete(event) {
+    const checkbox = event.target;
+    const label = checkbox.nextElementSibling; // The task text span
+
+    if (checkbox.checked) {
+        label.classList.add('completed');
+    } else {
+        label.classList.remove('completed');
+    }
+};
+
+// Function to delete a task
+function deleteTask(event) {
+    const task = event.target.closest('li');
+    task.remove();
+};

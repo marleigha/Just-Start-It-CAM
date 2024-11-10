@@ -15,15 +15,16 @@
             <h3>current selected reward: <span id="selected-reward"></span></h3>
             <h3>points: <span id="selected-points"></span></h3>
 
+            <select id="reward-dropdown">
+                <option value="" disabled selected>select a reward</option>
+            </select>
+
             <h4>add reward options, and set point values</h4>
             <input type="text" id="reward-name" placeholder="Reward Name" />
             <input type="number" id="reward-points" placeholder="Points" min="1" />
             <button id="add-reward-btn">Add Reward</button>
 
             <!-- Dropdown for selecting rewards -->
-            <select id="reward-dropdown">
-                <option value="" disabled selected>select a reward</option>
-            </select>
         </div>
 
         <!-- Input area for tasks -->
@@ -39,13 +40,14 @@
             </select>
             <select id="urgency">
                 <option value="" disabled selected>Select Urgency</option>
-                <option value="Urgent">Low</option>
-                <option value="Non-Urgent">Urgent</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Non-Urgent">Non-Urgent</option>
             </select>
             <input type="date" id="start-date" value="">
             <input type="date" id="end-date" />
             <button id="add-task-btn">Add Task</button>
         </div>
+        <button id="financial-template-btn">financial to-do list template</button>
 
         <!-- Task list -->
         <h2>current to-do list</h2>
