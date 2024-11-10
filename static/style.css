@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #ede8d0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,10 +10,10 @@ body {
 
 .container {
   background-color: white;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 600px;
+  width: 1000px;
   text-align: center;
 }
 
@@ -31,15 +31,15 @@ h1 {
 
 input[type="text"], input[type="number"] select, input[type="date"] {
   padding: 8px;
-  width: 45%;
+  width: 35%;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
 button {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: #9CAF88;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -47,7 +47,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #c2d8a9;
 }
 
 ul {
