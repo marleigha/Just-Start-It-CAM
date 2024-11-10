@@ -4,9 +4,13 @@
 const rewardNameInput = document.getElementById('reward-name');
 const rewardPointsInput = document.getElementById('reward-points');
 const addRewardBtn = document.getElementById('add-reward-btn');
+const createNewRewardBtn = document.getElementById('create-new-reward-btn');
+const closeNewRewardBtn = document.getElementById('close-new-reward-btn')
+const rewardMakerArea = document.getElementById('reward-maker')
 const rewardDropdown = document.getElementById('reward-dropdown');
 const selectedRewardDisplay = document.getElementsByClassName('selected-reward');
 const selectedPointsDisplay = document.getElementById('selected-points');
+const currentPointsDisplay = document.getElementById('current-points');
 
 const taskArea = document.getElementById('task-section');
 const createTasksBtn = document.getElementById('create-tasks-btn');
@@ -154,6 +158,21 @@ rewardDropdown.addEventListener('change', () => {
 });
 
 //show the area where you make new tasks
+createNewRewardBtn.addEventListener('click', () => {
+    rewardMakerArea.classList.remove('hidden');
+    createNewRewardBtn.classList.add('hidden');
+    closeNewRewardBtn.classList.remove('hidden');
+});
+
+//show the area where you make new tasks
+closeNewRewardBtn.addEventListener('click', () => {
+    rewardMakerArea.classList.add('hidden');
+    createNewRewardBtn.classList.remove('hidden');
+    closeNewRewardBtn.classList.add('hidden');
+
+
+});
+
 createTasksBtn.addEventListener('click', () => {
     taskArea.classList.remove('hidden');
     createTasksBtn.classList.add('hidden');
@@ -209,6 +228,7 @@ addTaskBtn.addEventListener('click', () => {
     tasks.push(task);
 
     const li = document.createElement('li');
+    li.classList.add('to-do')
 
     // Checkbox and task label
     const checkboxLabel = document.createElement('label');
@@ -282,10 +302,10 @@ function toggleComplete(event) {
         console.log('points to add', pointValue)
         newVal = progressBar.getAttribute("value");
         console.log('current value now', newVal);
+        currentPointsDisplay.textContent = newVal;
         const selectedIndex = rewardDropdown.value;
         const selectedReward = rewards[selectedIndex];
         console.log(selectedReward.points)
-        console.log('current value now', newVal);
 
         if (parseInt(newVal) >= parseInt(selectedReward.points)) {
             console.log('do we get here?')
@@ -297,6 +317,8 @@ function toggleComplete(event) {
     } else {
         label.classList.remove('completed');
         progressBar.setAttribute("value", (parseInt(currentValue) - parseInt(pointValue)).toString());
+        subbedVal = progressBar.getAttribute("value");
+        currentPointsDisplay.textContent = subbedVal;
         console.log('points to remove', pointValue)
     }
 };
@@ -336,6 +358,8 @@ function deleteTask(event) {
     console.log(task);
     if (checkedBool) {
         progressBar.setAttribute("value", currentValue - pointsToRemove);
+        subbedVal = progressBar.getAttribute("value");
+        currentPointsDisplay.textContent = subbedVal;
     }
     task.remove();
 };
