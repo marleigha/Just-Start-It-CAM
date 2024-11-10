@@ -274,7 +274,7 @@ function toggleComplete(event) {
     
     if (checkbox.checked) {
         label.classList.add('completed');
-        progressBar.setAttribute("value", (parseInt(currentValue)+ parseInt(pointValue)).toString());
+        Bar.setAttribute("value", (parseInt(currentValue)+ parseInt(pointValue)).toString());
         console.log('points to add', pointValue)
 
     } else {
