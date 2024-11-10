@@ -52,7 +52,7 @@ financialTemplateBtn.addEventListener('click', () => {
 
                 // Create task details (only values, no labels)
                 const span = document.createElement('span');
-                span.textContent = `${task.task_Name}, ${task.difficulty_level}, ${task.urgency_level}, ${task.startDate}, ${task.endDate}`;
+                span.textContent = `${task.task_Name}, ${task.difficulty_level}, ${task.urgency_level}, ${task.startDate}, ${task.due_date}`;
 
                 // Create task details (correctly access task properties)
                 const taskNameSpan = document.createElement('span');
@@ -61,9 +61,12 @@ financialTemplateBtn.addEventListener('click', () => {
                 difficultySpan.textContent = task.difficulty_level;  // Use task.difficulty
                 const urgencySpan = document.createElement('span');
                 urgencySpan.textContent = task.urgency_level;  // Use task.urgency
+                const dueDateSpan = document.createElement('span');
+                dueDateSpan.textContent = task.due_date;
                 
-                console.log(taskNameSpan)
-                console.log(difficultySpan)
+                console.log(taskNameSpan);
+                console.log(difficultySpan);
+                console.log(dueDateSpan);
 
                 // Calculate point value
                 const pointValue = pointCalulator(task.difficulty);
@@ -74,6 +77,7 @@ financialTemplateBtn.addEventListener('click', () => {
                 checkboxLabel.appendChild(checkbox);
                 checkboxLabel.appendChild(taskNameSpan);
                 checkboxLabel.appendChild(difficultySpan);
+                checkboxLabel.appendChild(dueDateSpan);
                 checkboxLabel.appendChild(pointSpan)
 
                 // Delete button
