@@ -1,18 +1,3 @@
-# Just Start It!
+# Focus Pocus!
 
-Foobar is a Python library for dealing with word pluralization.
-## Task Organization
-
-CSV files with the following values
-task_Name, difficulty_level, urgency_level, status, start_date, due_date, points_awarded
-
-## Rewards
-CSV files with the information
-reward_name, points_needed, description
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+Focus Pocus is a web app built for making tasks easier! Set specific rewards for yourself and assign them point values. Once you select your reward get started adding tasks. We all know how difficult and complicated finances can be, so we started Focus Pocus' development by creating a finicaial to-do template. This will help with finicial education across the board.  We realized this can be extend to every task in your life, so give Focus Pocus a try! 
