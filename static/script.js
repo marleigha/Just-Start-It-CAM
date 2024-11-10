@@ -22,7 +22,7 @@ const uploadTasksBtn = document.getElementById('upload-tasks-btn');
 
 //upload csv templates and turn them into to-dos
 const financialTemplateBtn = document.getElementById('financial-template-btn');
-financialTemplateBtnn.addEventListener('click', () => {
+financialTemplateBtn.addEventListener('click', () => {
     //this is where we'd want to have the read in csv and stuff
 });
 
