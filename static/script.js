@@ -222,8 +222,11 @@ addTaskBtn.addEventListener('click', () => {
     taskNameSpan.textContent = taskName;
     difficultySpan = document.createElement('span');
     difficultySpan.textContent = difficulty;
-    
+    const dueDateSpan = document.createElement('span');
+    dueDateSpan.textContent = task.endDate;
 
+    console.log(dueDateSpan);
+    
     //calculate point value
     //take in whatever params it needs
     const pointValue = pointsCalculator(difficulty, urgency);
@@ -234,7 +237,8 @@ addTaskBtn.addEventListener('click', () => {
     checkboxLabel.appendChild(checkbox);
     checkboxLabel.appendChild(taskNameSpan);
     checkboxLabel.appendChild(difficultySpan);
-    checkboxLabel.appendChild(pointSpan)
+    checkboxLabel.appendChild(dueDateSpan);
+    checkboxLabel.appendChild(pointSpan);
 
     // Delete button
     const deleteBtn = document.createElement('button');
