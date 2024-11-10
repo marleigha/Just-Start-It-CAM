@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Helvetica, sans-serif;
   background-color: #ede8d0;
   display: flex;
   justify-content: center;
@@ -291,3 +291,26 @@ input[type="number"] {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
+
+  img.purple-star{
+  
+        width:50px;
+        height: 50px;
+        position: absolute;
+        left: 114px;
+        top: 30px;
+
+      }
+
+      img.purple-star-2{
+  
+        width:100px;
+        height: 100px;
+        position: absolute;
+        left: 153px;
+        top: 56px;
+
+      }
+
+    
