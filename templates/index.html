@@ -9,112 +9,47 @@
 <body>
     <div class="container">
         <h1>just start it!</h1>
-        <div class = "reward-section">
-            <p id="output">current reward goal: <span id="selected-reward">None</span></p>
-            <p id="output">points needed to reach goal: <span id="points">0</span></p>
-            <div>
-                <label for="file" id="output" >current progress</label>
-                <progress id="file" value="32" max="100"> 32% </progress>
-            </div>
+
+        <!-- Input area for rewards -->
+        <div id="reward-section">
+            <h3>current selected reward: <span id="selected-reward"></span></h3>
+            <h3>points: <span id="selected-points"></span></h3>
+
+            <h4>add reward options, and set point values</h4>
+            <input type="text" id="reward-name" placeholder="Reward Name" />
+            <input type="number" id="reward-points" placeholder="Points" min="1" />
+            <button id="add-reward-btn">Add Reward</button>
+
+            <!-- Dropdown for selecting rewards -->
             <select id="reward-dropdown">
-                <option value="" disabled selected>how will you reward yourself?</option>
-                <option value="bubble tea">Bubble Tea</option>
-                <option value="watch a movie">Watch a Movie</option>
-                <option value="1 hour video game session">1 hour Video Game Session</option>
+                <option value="" disabled selected>select a reward</option>
             </select>
-
-            
-    
-            <!-- Input field and button to add new items -->
-            <input type="text" id="new-item" placeholder="Reward Description">
-            <input type="text" id="new-item" placeholder="Reward Point Value">
-            <button id="add-btn">save new reward</button>
-    
-            <!-- Error message for invalid input -->
-            <p id="error-msg" class="hidden">Please enter a valid item!</p>
-        </div>
-        <!-- <button id="create-new-task-btn">Create New Task</button>
-        <div id="input-area" class = "hidden">
-                <div> 
-                    <ul class= "task-creation" id="task-creation">
-                        <li>Task Description</li>
-                        <li>Difficulty</li>
-                        <li>Urgency</li>
-                        <li>Status</li>
-                        <li>Start Date</li>
-                        <li>End Date</li>
-                    </ul>
-                </div>
-            <div id = 'input-row' class="input-row">
-                <input type="text" placeholder="Task Description" class="task-input">
-                <select class="difficulty-select">
-                    <option value="" disabled selected>Select Difficulty</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
-                <select class="urgency-select">
-                    <option value="" disabled selected>Select Urgency</option>
-                    <option value="urgent">Urgent</option>
-                    <option value="non-urgent">Non-Urgent</option>
-                </select>
-                <select class="status">
-                    <option value="" disabled selected>Select Status</option>
-                    <option value="not-started">Not Started</option>
-                    <option value="in-progress">In Progress</option>
-                    <option value="completed">Completed</option>
-                </select>
-                <input type="date" class="start-date-input">
-                <input type="date" class="end-date-input">
-                <button class ="save-task">Save Task</button>
-                <button class="remove-btn">Remove</button>
-            </div>
         </div>
 
-        <!-- Buttons to add more inputs and download CSV -->
-        <!-- <button id="add-row-btn">Add New Task</button>
-        <button id="download-btn">Download CSV</button>
-
-        Error message for invalid input
-        <p id="error-msg" class="hidden">Please enter valid data in all fields!</p>
-        <button id = 'finances template'>Make Finances</button>
-        <ul id="todo-list"></ul>
-
-        <form id="todo-form">
-            <input type="text" id="new-task" placeholder="Add a new task" required>
-            <button type="submit">Add Task</button>
-        </form> -->
-    <!-- </div> -->
-        <h1>Task List</h1>
-
-        <!-- Input area for task details -->
-        <div id="input-area">
-            <input type="text" placeholder="Task Name" class="task-name-input">
-            <select class="difficulty-select">
-                <option value="" disabled selected>Difficulty</option>
+        <!-- Input area for tasks -->
+        <button id="create-tasks-btn">create new tasks</button>
+        <button id="close-creation-btn" class = 'hidden'>close task creation</button>
+        <div id="task-section" class = 'hidden'>
+            <input type="text" id="task-name" placeholder="Task Name" />
+            <select id="difficulty">
+                <option value="" disabled selected>Select Difficulty</option>
                 <option value="Easy">Easy</option>
                 <option value="Medium">Medium</option>
                 <option value="Hard">Hard</option>
             </select>
-            <select class="urgency-select">
-                <option value="" disabled selected>Urgency</option>
-                <option value="Urgent">Urgent</option>
-                <option value="Non-Urgent">Non-Urgent</option>
-
+            <select id="urgency">
+                <option value="" disabled selected>Select Urgency</option>
+                <option value="Urgent">Low</option>
+                <option value="Non-Urgent">Urgent</option>
             </select>
-            <input type="date" class="start-date-input" value="">
-            <input type="date" class="end-date-input" value="">
+            <input type="date" id="start-date" value="">
+            <input type="date" id="end-date" />
             <button id="add-task-btn">Add Task</button>
         </div>
 
-        <!-- Task List -->
+        <!-- Task list -->
+        <h2>current to-do list</h2>
         <ul id="task-list"></ul>
-
-        <!-- Buttons to download CSV -->
-        <button id="download-btn">Download CSV</button>
-
-        <!-- Error message for invalid input -->
-        <p id="error-msg" class="hidden">Please fill out all fields correctly!</p>
     </div>
     
 

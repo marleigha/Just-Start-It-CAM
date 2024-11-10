@@ -29,7 +29,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-input[type="text"], select, input[type="date"] {
+input[type="text"], input[type="number"] select, input[type="date"] {
   padding: 8px;
   width: 45%;
   border-radius: 5px;

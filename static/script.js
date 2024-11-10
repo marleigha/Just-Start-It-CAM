@@ -1,124 +1,117 @@
-/** 
- * @fileOverview Wellesley Hackathon Project 
- * 
- * @author Marleigh Ausbrooks, Carrie Huang, Ariel Athena Moncrief
- */
-
-
-// Get the dropdown element and output area
+// Get DOM elements
+const rewardNameInput = document.getElementById('reward-name');
+const rewardPointsInput = document.getElementById('reward-points');
+const addRewardBtn = document.getElementById('add-reward-btn');
 const rewardDropdown = document.getElementById('reward-dropdown');
-const selectedReward = document.getElementById('selected-reward');
-const newItemInput = document.getElementById('new-item');
-const addButton = document.getElementById('add-btn');
-const errorMsg = document.getElementById('error-msg');
+const selectedRewardDisplay = document.getElementById('selected-reward');
+const selectedPointsDisplay = document.getElementById('selected-points');
 
-// Handle dropdown selection change
-rewardDropdown.addEventListener('change', function () {
-    const value = rewardDropdown.value;
-    selectedReward.textContent = value;
+const taskArea = document.getElementById('task-section');
+const createTasksBtn = document.getElementById('create-tasks-btn');
+const closeTaskCreationBtn = document.getElementById('close-creation-btn');
+const taskNameInput = document.getElementById('task-name');
+const difficultyInput = document.getElementById('difficulty');
+const urgencyInput = document.getElementById('urgency');
+const startDateInput = document.getElementById('start-date');
+const endDateInput = document.getElementById('end-date');
+const addTaskBtn = document.getElementById('add-task-btn');
+const taskList = document.getElementById('task-list');
+const downloadTasksBtn = document.getElementById('download-tasks-btn');
+const uploadCsvInput = document.getElementById('csv-upload');
+const uploadTasksBtn = document.getElementById('upload-tasks-btn');
+
+// Reward storage
+const rewards = [];
+
+// Task storage
+const tasks = [];
+
+// Set today's date as default for start date
+const today = new Date().toISOString().split('T')[0];
+startDateInput.value = today;
+
+// Add reward to the dropdown
+addRewardBtn.addEventListener('click', () => {
+    const rewardName = rewardNameInput.value.trim();
+    const rewardPoints = rewardPointsInput.value.trim();
+
+    if (rewardName === '' || rewardPoints === '') {
+        alert('Please enter a reward name and points.');
+        return;
+    }
+
+    const reward = {
+        name: rewardName,
+        points: rewardPoints
+    };
+    rewards.push(reward);
+
+    const option = document.createElement('option');
+    option.value = rewards.length - 1;  // Store the index in the value
+    option.textContent = `${rewardName} (${rewardPoints} pts)`;
+    rewardDropdown.appendChild(option);
+
+    // Clear input fields
+    rewardNameInput.value = '';
+    rewardPointsInput.value = '';
 });
 
-// Function to add a new option to the dropdown
-function addNewReward() {
-    const newItemText = newItemInput.value.trim();
+// Display selected reward details
+rewardDropdown.addEventListener('change', () => {
+    const selectedIndex = rewardDropdown.value;
+    const selectedReward = rewards[selectedIndex];
 
-    if (newItemText === "") {
-        // Show error if input is empty
-        errorMsg.classList.remove('hidden');
+    selectedRewardDisplay.textContent = selectedReward.name;
+    selectedPointsDisplay.textContent = selectedReward.points;
+});
+
+//show the area where you make new tasks
+createTasksBtn.addEventListener('click', () => {
+    taskArea.classList.remove('hidden');
+    createTasksBtn.classList.add('hidden');
+    closeTaskCreationBtn.classList.remove('hidden');
+});
+
+//show the area where you make new tasks
+closeTaskCreationBtn.addEventListener('click', () => {
+    taskArea.classList.add('hidden');
+    createTasksBtn.classList.remove('hidden');
+    closeTaskCreationBtn.classList.add('hidden');
+
+
+});
+
+// Add task to the task list
+addTaskBtn.addEventListener('click', () => {
+    const taskName = taskNameInput.value.trim();
+    const difficulty = difficultyInput.value;
+    const urgency = urgencyInput.value;
+    const startDate = startDateInput.value;
+    const endDate = endDateInput.value;
+
+    if (taskName === '' || difficulty === '' || urgency === '' || startDate === '' || endDate === '') {
+        alert('Please fill out all fields.');
         return;
     }
 
-    // Hide error message if input is valid
-    errorMsg.classList.add('hidden');
+    const task = {
+        name: taskName,
+        difficulty,
+        urgency,
+        startDate,
+        endDate
+    };
+    tasks.push(task);
 
-    // Create a new option element
-    const newOption = document.createElement('option');
-    newOption.value = newItemText.toLowerCase();
-    newOption.textContent = newItemText;
-
-    // Add the new option to the dropdown
-    rewardDropdown.appendChild(newOption);
-
-    // Clear the input field
-    newItemInput.value = '';
-}
-
-// Handle the button click event to add new item
-addButton.addEventListener('click', addNewReward);
-
-//
-// Get DOM elements
-const inputArea = document.getElementById('input-area');
-editingBool = false;
-const createNewTaskBtn = document.getElementById('create-new-task-btn');
-const downloadBtn = document.getElementById('download-btn');
-//const errorMsg = document.getElementById('error-msg');
-
-createNewTaskBtn.addEventListener('click', () => startWritingTask());
-
-
-function startWritingTask() {
-    editingBool = true;
-    inputArea.classList.remove('hidden');
-    // getting the values for each area
-    //const row = document.querySelectorAll('.input-row');
-    let validData = true;
-    specificTask = document.getElementById('input-row')
-
-    const taskInput = specificTask.querySelector('.task-input').value.trim();
-    const difficulty = specificTask.querySelector('.difficulty-select').value;
-    const urgency = specificTask.querySelector('urgency-select').value
-    const startDate = specificTask.querySelector('.start-date-input').value;
-    const endDate = specificTask.querySelector('.end-date-input').value;
-
-
-    if (taskInput === '' || difficulty === '' || urgency === '' || startDate === '' || endDate === '') {
-        validData = false;
-        return;
-    }
-
-
-    if (!validData) {
-        errorMsg.classList.remove('hidden');
-        return;
-    } else {
-        errorMsg.classList.add('hidden');
-    }
-
-    //
-    const saveTaskBtn = div.querySelector('.save-task-btn');
-    saveTaskBtn.addEventListener('click', () => saveTask(taskInput, difficulty, urgency, startDate, endDate));
-
-
-    //
-    const removeBtn = div.querySelector('.remove-btn');
-    removeBtn.addEventListener('click', () => div.remove());
-
-}
-
-function saveTask(taskInput, difficulty, urgency, startDate, endDate){
-    inputArea.classList.add('hidden');
+    // Add task to the UI as an <li>
     const li = document.createElement('li');
-    li.innerHTML = `
-        <span>${taskInput}</span>
-        <button class="delete-btn">Delete</button>
-    `;
-    todoList.appendChild(li);
-    //save task
-    li.querySelector('.delete-btn').addEventListener('click', (e) => {
-        e.stopPropagation();  // Prevent completing task when deleting
-        li.remove();
-    });
+    li.textContent = `Task: ${taskName}, Difficulty: ${difficulty}, Urgency: ${urgency}, Start: ${startDate}, End: ${endDate}`;
+    taskList.appendChild(li);
 
-    // Mark task as complete on click
-    li.addEventListener('click', () => {
-        li.classList.toggle('completed');
-    });
-
-
-    // Delete task on button click
-    li.querySelector('.delete-btn').addEventListener('click', (e) => {
-        e.stopPropagation();  // Prevent completing task when deleting
-        li.remove();
-    });
-}
+    // Clear input fields
+    taskNameInput.value = '';
+    difficultyInput.value = '';
+    urgencyInput.value = '';
+    startDateInput.value = today;
+    endDateInput.value = '';
+});
