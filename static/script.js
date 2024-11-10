@@ -225,7 +225,7 @@ addTaskBtn.addEventListener('click', () => {
     difficultySpan = document.createElement('span');
     difficultySpan.textContent = difficulty;
     const dueDateSpan = document.createElement('span');
-    dueDateSpan.textContent = task.endDate;
+    dueDateSpan.textContent = 'due: ' + (task.endDate).toString();
 
     console.log(dueDateSpan);
     
@@ -268,7 +268,9 @@ function toggleComplete(event) {
     const checkbox = event.target;
     const label = checkbox.nextElementSibling; // The task text span
     const difficulty = label.nextElementSibling;
-    const rawPointSpan = difficulty.nextElementSibling.innerHTML;
+    const dueDate = difficulty.nextElementSibling;
+    const rawPointSpan = dueDate.nextElementSibling.innerHTML;
+    console.log('raw point', rawPointSpan);
     const pointValue = rawPointSpan.split(' ')[1];
     currentValue = progressBar.getAttribute("value");
     console.log('current value', currentValue);
