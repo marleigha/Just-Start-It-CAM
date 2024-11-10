@@ -15,15 +15,15 @@ body {
   padding-right: 8%;
   padding-left: 8%;
 
-  p{
+  p {
     padding-right: 1%;
     padding-left: 1%;
   }
-  button{
+  button {
     margin-left: 2%;
     margin-right: 2%;
   }
-  select{
+  select {
     margin-left: 0.5%;
     margin-right: 0.5%;
     width: 23%;
@@ -99,7 +99,6 @@ li {
   padding: 10px;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.3s ease;
-
 }
 
 li:hover {
@@ -236,28 +235,28 @@ canvas {
   pointer-events: none;
   z-index: 9999;
 }
-div.new-reward{
+div.new-reward {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-right: 8%;
   padding-left: 8%;
 
-  button{
+  button {
     margin-left: 2%;
     margin-right: 2%;
     padding-right: 2%;
     padding-left: 2%;
   }
 }
-div.control-center{
+div.control-center {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-right: 8%;
   padding-left: 8%;
 
-  button{
+  button {
     margin-left: 2%;
     margin-right: 2%;
     padding-right: 1%;
@@ -292,70 +291,64 @@ input[type="number"] {
   border: 1px solid #ccc;
 }
 
+img.purple-star {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 114px;
+  top: 30px;
+}
 
-  img.purple-star{
-  
-        width:50px;
-        height: 50px;
-        position: absolute;
-        left: 114px;
-        top: 30px;
+img.purple-star-2 {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 153px;
+  top: 56px;
+}
 
-      }
+img.purple-star-3 {
+  width: 75px;
+  height: 75px;
+  position: absolute;
+  left: 876px;
+  top: 67px;
+}
 
-      img.purple-star-2{
-  
-        width:100px;
-        height: 100px;
-        position: absolute;
-        left: 153px;
-        top: 56px;
+img.purple-star-4 {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 956px;
+  top: 67px;
+}
 
-      }
+img.purple-star-5 {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 958px;
+  top: 105px;
+}
 
-      img.purple-star-3{
-  
-        width: 75px;
-        height: 75px;
-        position: absolute;
-        left: 876px;
-        top: 67px;
-
-      }
-
-      img.purple-star-4{
-  
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        left: 956px;
-        top: 67px;
-
-      }
-
-
-      img.purple-star-5{
-  
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        left: 958px;
-        top: 105px;
-
-      }
-
-      footer {
-        background-color: rgb(208, 183, 255);
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 75px;
-        width: 100%;
-        overflow: hidden;
-        h4{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-        }
-    }
+footer {
+  background-color: rgb(208, 183, 255);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 75px;
+  width: 100%;
+  overflow: hidden;
+  justify-content: center;
+  h4 {
+    display: flex;
+    justify-content: center;
+  }
+  img.focus-pocus-logo {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 19px;
+    top: -12px;
+  }
+}
