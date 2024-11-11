@@ -333,10 +333,10 @@ img.purple-star-5 {
 
 footer {
   background-color: rgb(208, 183, 255);
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
-  height: 75px;
+  height: 50px;
   width: 100%;
   overflow: hidden;
   justify-content: center;
@@ -345,10 +345,10 @@ footer {
     justify-content: center;
   }
   img.focus-pocus-logo {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     position: absolute;
     left: 19px;
-    top: -12px;
-  }
+    top: -5px;
+}
 }
